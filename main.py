@@ -2,6 +2,7 @@ import random
 import datetime
 import pandas
 import smtplib
+import os
 
 dob = pandas.read_csv("dob_file.csv")
 
@@ -19,8 +20,8 @@ for index,row in dob.iterrows():
         random_letter = random.choice(letters)
         name = row["name"]
 
-        my_email = ""
-        password = ""
+        my_email = os.environ["EMAIL"]
+        password = os.environ["EMAIL_APP_PASSWORD"]
 
         with smtplib.SMTP("smtp.gmail.com",587) as connection:
             connection.starttls()
